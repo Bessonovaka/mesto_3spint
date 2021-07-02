@@ -1,15 +1,24 @@
 .close-button {
-    background-image: url(../../images/close.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 32px;
-    width: 32px;
-    position: absolute;
-    left: 64%;
-    top: 16%;
-    cursor: pointer;
-    transition: all .5s ease-out;
+  background-image: url(../../images/close.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  left: 64%;
+  top: 16%;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
 }
 .close-button:hover {
-    opacity: 0.6;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .close-button {
+    height: 20px;
+    width: 20px;
+    top: 6%;
+    left: 72%;
+  }
 }
