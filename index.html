@@ -9,14 +9,47 @@
   </head>
   <body>
     <div class="page">
-      
-      <div class="popup">
-        <form action="#" class="popup__container">
-          <div class="close-button"></div>
+      <div class="popup popup-edit-profile">
+        <form action="#" class="popup__container popup-edit-profile__form">
+          <div class="popup-edit-profile__close-button close-button"></div>
           <h2 class="popup__title title">Редактировать профиль</h2>
-          <input type="text" class="popup__field" id="name" name="name" placeholder="Жак-Ив Кусто">
-          <input type="text" class="popup__field" id="profession" name="profession" placeholder="Исследователь океана">
+          <input
+            type="text"
+            class="popup__field"
+            id="name"
+            name="name"
+            placeholder="Жак-Ив Кусто"
+          />
+          <input
+            type="text"
+            class="popup__field"
+            id="profession"
+            name="profession"
+            placeholder="Исследователь океана"
+          />
           <button class="popup__button submit-button">Сохранить</button>
+        </form>
+      </div>
+
+      <div class="popup popup-create-card">
+        <form action="#" class="popup__container popup-create-card__form">
+          <div class="popup-create-card__close-button close-button"></div>
+          <h2 class="popup__title title">Новое место</h2>
+          <input
+            type="text"
+            class="popup__field"
+            id="place-name"
+            name="place-name"
+            placeholder="Название"
+          />
+          <input
+            type="text"
+            class="popup__field"
+            id="place-link"
+            name="place-link"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="popup__button submit-button">Создать</button>
         </form>
       </div>
 
@@ -26,7 +59,6 @@
       </header>
 
       <main class="main">
-
         <section class="profile">
           <img src="images/avatar.jpg" alt="Photo" class="profile__avatar" />
           <div class="profile__info">
@@ -38,56 +70,22 @@
         </section>
 
         <section class="photo-grid">
-          <div class="photo-grid__card">
-            <img src="images/grid-1.jpg" alt="photo" class="photo-grid__img" />
-            <div class="photo-grid__description">
-              <h2 class="photo-grid__title title">Карачаевск</h2>
-              <button class="like-button" onclick="likeDislike(this)"></button>
+          <template id="photo-grid-card">
+            <div class="photo-grid__card">
+              <img alt="photo" class="photo-grid__img" />
+              <div class="photo-grid__description">
+                <h2 class="photo-grid__title title"></h2>
+                <button
+                  class="like-button"
+                  onclick="likeDislike(this)"
+                ></button>
+              </div>
             </div>
-          </div>
-          <div class="photo-grid__card">
-            <img src="images/grid-2.jpg" alt="photo" class="photo-grid__img" />
-            <div class="photo-grid__description">
-              <h2 class="photo-grid__title title">Гора Эльбрус</h2>
-              <button class="like-button" onclick="likeDislike(this)"></button>
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <img src="images/grid-3.jpg" alt="photo" class="photo-grid__img" />
-            <div class="photo-grid__description">
-              <h2 class="photo-grid__title title">Домбай</h2>
-              <button class="like-button" onclick="likeDislike(this)"></button>
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <img src="images/grid-2.jpg" alt="photo" class="photo-grid__img" />
-            <div class="photo-grid__description">
-              <h2 class="photo-grid__title title">Гора Эльбрус</h2>
-              <button class="like-button" onclick="likeDislike(this)"></button>
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <img src="images/grid-3.jpg" alt="photo" class="photo-grid__img" />
-            <div class="photo-grid__description">
-              <h2 class="photo-grid__title title">Домбай</h2>
-              <button class="like-button" onclick="likeDislike(this)"></button>
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <img src="images/grid-1.jpg" alt="photo" class="photo-grid__img" />
-            <div class="photo-grid__description">
-              <h2 class="photo-grid__title title">Карачаевск</h2>
-              <button class="like-button" onclick="likeDislike(this)"></button>
-            </div>
-          </div>
+          </template>
         </section>
-
       </main>
 
-      <footer class="footer">
-        © 2020 Mesto Russia
-      </footer>
-
+      <footer class="footer">© 2020 Mesto Russia</footer>
     </div>
     <script src="script.js"></script>
   </body>
