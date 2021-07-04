@@ -50,6 +50,22 @@ function likeDislike(x) {
     x.classList.toggle('like-button_fill_black');
 }
 
+function viewPhoto(photo) {
+  const photoPopup = document.querySelector('.popup-big-photo');
+  const photoPopupImage = document.querySelector('.popup-big-photo__image');
+  const popupClose = document.querySelector('.popup-big-photo__close-button')
+  const photoPopupTitle = document.querySelector('.popup-big-photo__text');
+  
+  photoPopupImage.src = photo.src;
+  photoPopupTitle.textContent = photo.nextSibling.nextSibling.firstChild.nextSibling.textContent;
+
+  photoPopup.classList.add('popup-big-photo_opened');
+
+  popupClose.addEventListener('click', function(){
+    photoPopup.classList.remove('popup-big-photo_opened');
+  })  
+}
+
 function editProfile() {
     let editProfileButton = document.querySelector('.edit-button');
     let popup = document.querySelector('.popup-edit-profile');

@@ -53,6 +53,14 @@
         </form>
       </div>
 
+      <div class="popup popup-big-photo">
+        <div class="popup-big-photo__container">
+          <img alt="photo" class="popup-big-photo__image" />
+          <p class="popup-big-photo__text"></p>
+          <div class="popup-big-photo__close-button close-button"></div>
+        </div>
+      </div>
+
       <header class="header">
         <img src="images/logo.svg" alt="logo" class="logo" />
         <div class="line"></div>
@@ -78,7 +86,11 @@
                 class="delete-button"
                 onclick="deleteCard(this)"
               />
-              <img alt="photo" class="photo-grid__img" />
+              <img
+                alt="photo"
+                class="photo-grid__img"
+                onclick="viewPhoto(this)"
+              />
               <div class="photo-grid__description">
                 <h2 class="photo-grid__title title"></h2>
                 <button
