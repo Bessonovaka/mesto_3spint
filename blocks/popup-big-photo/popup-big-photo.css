@@ -1,4 +1,8 @@
 .popup-big-photo {
+  display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.5s linear;
 }

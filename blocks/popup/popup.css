@@ -5,7 +5,9 @@
   height: 100%;
   left: 0;
   top: 0;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.5s linear;
   z-index: 100;
   padding-bottom: 48px;
 }
