@@ -37,8 +37,13 @@ function createCard(src, textCont) {
     photoGridCard.querySelector('.photo-grid__title').textContent = textCont;
 
     // отображаем на странице
-    photoGrid.append(photoGridCard);
+    photoGrid.prepend(photoGridCard);
 
+}
+
+function deleteCard(btn) {
+  const card = btn.closest('.photo-grid__card');
+  card.remove();
 }
 
 function likeDislike(x) {
