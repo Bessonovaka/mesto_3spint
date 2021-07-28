@@ -1,16 +1,23 @@
 .popup__field {
-    opacity: 0.2;
-    border: none;
-    border-bottom: 1px solid #000000;
-    margin-bottom: 30px;
-    padding: 13px;
-    color: #000000;
+  opacity: 0.2;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 5px;
+  color: #000000;
+  padding-bottom: 13px;
 }
 
 .popup__field::placeholder,
 .popup__field::-moz-placeholder,
 .popup__field::-webkit-input-placeholder {
-    font-size: 14px;
-    line-height: 1.2;
-    color: #000000;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.popup__field:focus,
+.popup__field:active {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000000;
 }
