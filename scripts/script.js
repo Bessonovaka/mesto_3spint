@@ -41,6 +41,24 @@ function createCard(src, textCont) {
 
 }
 
+function closePopup(closeBtn, popupOpenedClass, popup) {
+  closeBtn.addEventListener('click', function(){
+    popup.classList.remove(popupOpenedClass);
+  });
+
+  popup.addEventListener('click', function(evt){
+    if (evt.target === popup) {
+      popup.classList.remove(popupOpenedClass);
+    }
+  });
+
+  document.addEventListener('keydown', function(evt){
+    if (evt.key === 'Escape') {
+      popup.classList.remove(popupOpenedClass);
+    }
+  });
+}
+
 function deleteCard(btn) {
   const card = btn.closest('.photo-grid__card');
   card.remove();
@@ -61,37 +79,31 @@ function viewPhoto(photo) {
 
   photoPopup.classList.add('popup-big-photo_opened');
 
-  popupClose.addEventListener('click', function(){
-    photoPopup.classList.remove('popup-big-photo_opened');
-  })  
+  closePopup(popupClose, 'popup-big-photo_opened', photoPopup);
 }
 
 function editProfile() {
-    let editProfileButton = document.querySelector('.edit-button');
-    let popup = document.querySelector('.popup-edit-profile');
-    let popupClose = document.querySelector('.popup-edit-profile__close-button');
+  let editProfileButton = document.querySelector('.edit-button');
+  let popup = document.querySelector('.popup-edit-profile');
+  let popupClose = document.querySelector('.popup-edit-profile__close-button');
 
-    editProfileButton.addEventListener('click', function(){
-        popup.classList.add('popup_opened');
-    })
+  editProfileButton.addEventListener('click', function(){
+    popup.classList.add('popup_opened');
+  })
 
-    popupClose.addEventListener('click', function(){
-        popup.classList.remove('popup_opened');
-    })
+  closePopup(popupClose, 'popup_opened', popup);
 }
 
 function addCard() {
-    let addCardButton = document.querySelector('.add-button');
-    let popup = document.querySelector('.popup-create-card');
-    let popupClose = document.querySelector('.popup-create-card__close-button');
+  let addCardButton = document.querySelector('.add-button');
+  let popup = document.querySelector('.popup-create-card');
+  let popupClose = document.querySelector('.popup-create-card__close-button');
 
-    addCardButton.addEventListener('click', function(){
-        popup.classList.add('popup_opened');
-    })
+  addCardButton.addEventListener('click', function(){
+    popup.classList.add('popup_opened');
+  })
 
-    popupClose.addEventListener('click', function(){
-        popup.classList.remove('popup_opened');
-    })
+  closePopup(popupClose, 'popup_opened', popup);
 }
 
 function submiteditProfileForm() {
@@ -144,7 +156,6 @@ function submitAddCardForm() {
     // он будет следить за событием “submit” - «отправка»
     formElement.addEventListener('submit', formSubmitHandler); 
 }
-
 
 
 editProfile();
