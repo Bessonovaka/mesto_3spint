@@ -1,3 +1,5 @@
+import { Card } from './Card.js';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -25,20 +27,26 @@ const initialCards = [
   }
 ]; 
 
+// Создание карточек — ООП
+
+const cardList = document.querySelector('.photo-grid');
+
+const renderElements = () => {
+  initialCards.forEach((item) => {
+    const card = new Card(item, '#photo-grid-card');
+
+    const cardElement = card.generateCard();
+    cardList.prepend(cardElement);
+  });
+};
+
+renderElements();
+
 function createCard(src, textCont) {
-    const photoGrid = document.querySelector('.photo-grid');
+  const card = new Card({name: textCont, link: src}, '#photo-grid-card');
 
-    const photoGridTemplate = document.querySelector('#photo-grid-card').content;
-    // клонируем содержимое тега template
-    const photoGridCard = photoGridTemplate.querySelector('.photo-grid__card').cloneNode(true);
-
-    // наполняем содержимым
-    photoGridCard.querySelector('.photo-grid__img').src = src;
-    photoGridCard.querySelector('.photo-grid__title').textContent = textCont;
-
-    // отображаем на странице
-    photoGrid.prepend(photoGridCard);
-
+  const cardElement = card.generateCard();
+  cardList.prepend(cardElement);
 }
 
 function closePopup(closeBtn, popupOpenedClass, popup) {
@@ -59,28 +67,6 @@ function closePopup(closeBtn, popupOpenedClass, popup) {
   });
 }
 
-function deleteCard(btn) {
-  const card = btn.closest('.photo-grid__card');
-  card.remove();
-}
-
-function likeDislike(x) {
-    x.classList.toggle('like-button_fill_black');
-}
-
-function viewPhoto(photo) {
-  const photoPopup = document.querySelector('.popup-big-photo');
-  const photoPopupImage = document.querySelector('.popup-big-photo__image');
-  const popupClose = document.querySelector('.popup-big-photo__close-button')
-  const photoPopupTitle = document.querySelector('.popup-big-photo__text');
-  
-  photoPopupImage.src = photo.src;
-  photoPopupTitle.textContent = photo.nextSibling.nextSibling.firstChild.nextSibling.textContent;
-
-  photoPopup.classList.add('popup-big-photo_opened');
-
-  closePopup(popupClose, 'popup-big-photo_opened', photoPopup);
-}
 
 function editProfile() {
   let editProfileButton = document.querySelector('.edit-button');
@@ -163,6 +149,3 @@ submiteditProfileForm();
 addCard();
 submitAddCardForm();
 
-initialCards.forEach((item) => {
-    createCard(item.link, item.name);
-})
