@@ -1,7 +1,8 @@
 import { Card } from '../components/Card.js';
 import Section from '../components/Section.js';
 import SubmitForm from '../components/SubmitForm.js';
-import { initialCards, cardList, popupCreateCard } from '../utils/constants.js'
+import TooglePopup from '../components/TooglePopup.js';
+import { initialCards, cardList, popupCreateCard, popupEditProfile } from '../utils/constants.js'
 // Создание карточек — ООП
 
 const cards = new Section({ 
@@ -19,6 +20,8 @@ const cards = new Section({
 
 cards.renderItems();
 
+// Создаём форму createCard
+
 // создаём экземпляр формы
 const formCreateCard = new SubmitForm({
   formSelector: '#form-create-card',
@@ -28,8 +31,7 @@ const formCreateCard = new SubmitForm({
         const card = new Card(formData, '#photo-grid-card');
     const cardElement = card.generateCard();
     cardList.prepend(cardElement);
-    const popup = document.querySelector('.popup-create-card');
-    popup.classList.remove('popup_opened');
+    popupCreateCard.classList.remove('popup_opened');
   }
 });
 
@@ -45,77 +47,37 @@ const formRenderer = new Section({
 // добавляем форму на страницу
 formRenderer.setItem(formElement); 
 
-function closePopup(closeBtn, popupOpenedClass, popup) {
-  closeBtn.addEventListener('click', function(){
-    popup.classList.remove(popupOpenedClass);
-  });
+// Создаём форму editProfile
 
-  popup.addEventListener('click', function(evt){
-    if (evt.target === popup) {
-      popup.classList.remove(popupOpenedClass);
-    }
-  });
-
-  document.addEventListener('keydown', function(evt){
-    if (evt.key === 'Escape') {
-      popup.classList.remove(popupOpenedClass);
-    }
-  });
-}
-
-
-function editProfile() {
-  let editProfileButton = document.querySelector('.edit-button');
-  let popup = document.querySelector('.popup-edit-profile');
-  let popupClose = document.querySelector('.popup-edit-profile__close-button');
-
-  editProfileButton.addEventListener('click', function(){
-    popup.classList.add('popup_opened');
-  })
-
-  closePopup(popupClose, 'popup_opened', popup);
-}
-
-function addCard() {
-  let addCardButton = document.querySelector('.add-button');
-  let popup = document.querySelector('.popup-create-card');
-  let popupClose = document.querySelector('.popup-create-card__close-button');
-
-  addCardButton.addEventListener('click', function(){
-    popup.classList.add('popup_opened');
-  })
-
-  closePopup(popupClose, 'popup_opened', popup);
-}
-
-function submiteditProfileForm() {
-    // Находим форму в DOM
-    let formElement = document.querySelector('.popup-edit-profile__form');
-    // Находим поля формы в DOM
-    let nameInput = document.querySelector('#name');
-    let jobInput = document.querySelector('#profession');
+// создаём экземпляр формы
+const formEditProfile = new SubmitForm({
+  formSelector: '#form-edit-profile',
+  handleFormSubmit: (formData) => {
+    const name = document.querySelector('.profile__title');
+    const job = document.querySelector('.profile__subtitle');
     
+    name.textContent = formData.name;
+    job.textContent = formData.profession;
+    popupEditProfile.classList.remove('popup_opened');
+  }
+});
 
-    // Обработчик «отправки» формы, хотя пока
-    // она никуда отправляться не будет
-    function formSubmitHandler (evt) {
-        evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+// генерируем разметку формы
+const formEditProfileElement = formEditProfile.generateForm();
 
-        let name = document.querySelector('.profile__title');
-        let job = document.querySelector('.profile__subtitle');
-        let popup = document.querySelector('.popup-edit-profile');
+// инициализируем класс, ответственный
+// за добавление формы на страницу
+const formEditProfileRenderer = new Section({
+    data: []
+}, popupEditProfile);
 
-        name.textContent = nameInput.value;
-        job.textContent = jobInput.value;
-        popup.classList.remove('popup_opened');
-    }
+// добавляем форму на страницу
+formEditProfileRenderer.setItem(formEditProfileElement); 
 
-    // Прикрепляем обработчик к форме:
-    // он будет следить за событием “submit” - «отправка»
-    formElement.addEventListener('submit', formSubmitHandler); 
-}
+// конец создания EditProfile
 
-editProfile();
-//submiteditProfileForm();
-addCard();
+const editProfile = new TooglePopup('.popup-edit-profile', '.edit-button', '.popup-edit-profile__close-button');
+editProfile.tooglePopup();
 
+const addCard = new TooglePopup('.popup-create-card', '.add-button', '.popup-create-card__close-button');
+addCard.tooglePopup();
