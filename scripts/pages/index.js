@@ -1,18 +1,49 @@
 import { Card } from '../components/Card.js';
-import { renderElements } from '../utils/utils.js';
-
+import Section from '../components/Section.js';
+import SubmitForm from '../components/SubmitForm.js';
+import { initialCards, cardList, popupCreateCard } from '../utils/constants.js'
 // Создание карточек — ООП
 
+const cards = new Section({ 
+  data: initialCards,
+  renderer: (cardItem) => {
+      const card = new Card(cardItem, '#photo-grid-card');
 
+      const cardElement = card.generateCard();
+      
+      cards.setItem(cardElement);
+  },
+},
+ cardList
+);
 
-renderElements();
+cards.renderItems();
 
-function createCard(src, textCont) {
-  const card = new Card({name: textCont, link: src}, '#photo-grid-card');
+// создаём экземпляр формы
+const formCreateCard = new SubmitForm({
+  formSelector: '#form-create-card',
+  handleFormSubmit: (formData) => {
+    // при создании экземпляра Card передаём
+    // ему объект с данными формы
+        const card = new Card(formData, '#photo-grid-card');
+    const cardElement = card.generateCard();
+    cardList.prepend(cardElement);
+    const popup = document.querySelector('.popup-create-card');
+    popup.classList.remove('popup_opened');
+  }
+});
 
-  const cardElement = card.generateCard();
-  cardList.prepend(cardElement);
-}
+// генерируем разметку формы
+const formElement = formCreateCard.generateForm();
+
+// инициализируем класс, ответственный
+// за добавление формы на страницу
+const formRenderer = new Section({
+    data: []
+}, popupCreateCard);
+
+// добавляем форму на страницу
+formRenderer.setItem(formElement); 
 
 function closePopup(closeBtn, popupOpenedClass, popup) {
   closeBtn.addEventListener('click', function(){
@@ -84,33 +115,7 @@ function submiteditProfileForm() {
     formElement.addEventListener('submit', formSubmitHandler); 
 }
 
-function submitAddCardForm() {
-    // Находим форму в DOM
-    let formElement = document.querySelector('.popup-create-card__form');
-    // Находим поля формы в DOM
-    let placeInput = document.querySelector('#place-name');
-    let linkInput = document.querySelector('#place-link');
-    let popup = document.querySelector('.popup-create-card');
-    
-
-    // Обработчик «отправки» формы, хотя пока
-    // она никуда отправляться не будет
-    function formSubmitHandler (evt) {
-        evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-        createCard(linkInput.value, placeInput.value);
-        
-        popup.classList.remove('popup_opened');
-    }
-
-    // Прикрепляем обработчик к форме:
-    // он будет следить за событием “submit” - «отправка»
-    formElement.addEventListener('submit', formSubmitHandler); 
-}
-
-
 editProfile();
-submiteditProfileForm();
+//submiteditProfileForm();
 addCard();
-submitAddCardForm();
 

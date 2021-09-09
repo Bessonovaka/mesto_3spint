@@ -26,3 +26,4 @@ export const initialCards = [
 ]; 
 
 export const cardList = document.querySelector('.photo-grid');
+export const popupCreateCard = document.querySelector('.popup-create-card');
