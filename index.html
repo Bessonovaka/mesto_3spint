@@ -10,46 +10,47 @@
   <body>
     <div class="page">
       <div class="popup popup-edit-profile">
-        <form
-          action="#"
-          class="form popup__container popup-edit-profile__form"
-          novalidate
-        >
-          <h2 class="popup__title title">Редактировать профиль</h2>
-          <fieldset class="form__set">
-            <label class="form__field">
-              <input
-                type="text"
-                class="popup__field form__input"
-                id="name"
-                name="name"
-                placeholder="Жак-Ив Кусто"
-                required
-                minlength="2"
-                maxlength="40"
-              />
-              <span class="form__input-error name-error"></span>
-            </label>
-            <label class="form__field">
-              <input
-                type="text"
-                class="popup__field form__input"
-                id="profession"
-                name="profession"
-                placeholder="Исследователь океана"
-                required
-                minlength="2"
-                maxlength="200"
-              />
-              <span class="form__input-error profession-error"></span>
-            </label>
-            <button class="popup__button submit-button form__submit">
-              Сохранить
-            </button>
-          </fieldset>
-
-          <div class="popup-edit-profile__close-button close-button"></div>
-        </form>
+        <template id="form-edit-profile">
+          <form
+            action="#"
+            class="form popup__container popup-edit-profile__form"
+            novalidate
+          >
+            <h2 class="popup__title title">Редактировать профиль</h2>
+            <fieldset class="form__set">
+              <label class="form__field">
+                <input
+                  type="text"
+                  class="popup__field form__input"
+                  id="name"
+                  name="name"
+                  placeholder="Жак-Ив Кусто"
+                  required
+                  minlength="2"
+                  maxlength="40"
+                />
+                <span class="form__input-error name-error"></span>
+              </label>
+              <label class="form__field">
+                <input
+                  type="text"
+                  class="popup__field form__input"
+                  id="profession"
+                  name="profession"
+                  placeholder="Исследователь океана"
+                  required
+                  minlength="2"
+                  maxlength="200"
+                />
+                <span class="form__input-error profession-error"></span>
+              </label>
+              <button class="popup__button submit-button form__submit">
+                Сохранить
+              </button>
+            </fieldset>
+            <div class="popup-edit-profile__close-button close-button"></div>
+          </form>
+        </template>
       </div>
 
       <div class="popup popup-create-card">
@@ -138,8 +139,6 @@
 
       <footer class="footer">© 2020 Mesto Russia</footer>
     </div>
-    <script type="module" src="scripts/components/Card.js"></script>
-    <script type="module" src="scripts/validate.js"></script>
     <script type="module" src="scripts/pages/index.js"></script>
   </body>
 </html>

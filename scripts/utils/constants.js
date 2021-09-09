@@ -27,3 +27,13 @@ export const initialCards = [
 
 export const cardList = document.querySelector('.photo-grid');
 export const popupCreateCard = document.querySelector('.popup-create-card');
+export const popupEditProfile = document.querySelector('.popup-edit-profile');
+
+export const validationData = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'submit-button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}

@@ -16,17 +16,19 @@ export default class SubmitForm {
 
     _setEventListeners() {
         // при сабмите формы
-        this._element.addEventListener('submit', (evt) => {
+                this._element.addEventListener('submit', (evt) => {
           // отменим стандартное поведение
           evt.preventDefault();
 
            // добавим вызов функции _handleFormSubmit
             // передадим ей объект — результат работы _getInputValues
-            this._handleFormSubmit(this._getInputValues());
+            
+              this._handleFormSubmit(this._getInputValues());
     
           // и сбросим её поля
           this._element.reset();
         })
+      
     }
 
     generateForm() {
@@ -39,7 +41,7 @@ export default class SubmitForm {
       _getInputValues() {
         // достаём все элементы полей
         this._inputList = this._element.querySelectorAll('.form__input');
-      
+            
         // создаём пустой объект
         this._formValues = {};
       
@@ -49,7 +51,8 @@ export default class SubmitForm {
         });
       
         // возвращаем объект значений
-        return this._formValues;
+        
+          return this._formValues;        
       } 
 
 

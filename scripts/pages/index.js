@@ -2,7 +2,8 @@ import { Card } from '../components/Card.js';
 import Section from '../components/Section.js';
 import SubmitForm from '../components/SubmitForm.js';
 import TooglePopup from '../components/TooglePopup.js';
-import { initialCards, cardList, popupCreateCard, popupEditProfile } from '../utils/constants.js'
+import ValidationForm from '../components/ValidationForm.js';
+import { initialCards, cardList, popupCreateCard, popupEditProfile, validationData } from '../utils/constants.js'
 // Создание карточек — ООП
 
 const cards = new Section({ 
@@ -81,3 +82,6 @@ editProfile.tooglePopup();
 
 const addCard = new TooglePopup('.popup-create-card', '.add-button', '.popup-create-card__close-button');
 addCard.tooglePopup();
+
+const validationForm = new ValidationForm(validationData);
+validationForm.enableValidation();
