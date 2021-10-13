@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
     <title>Mesto</title>
   </head>
   <body>
@@ -104,13 +103,17 @@
       </div>
 
       <header class="header">
-        <img src="images/logo.svg" alt="logo" class="logo" />
+        <img src="<%=require('./images/logo.svg')%>" alt="logo" class="logo" />
         <div class="line"></div>
       </header>
 
       <main class="main">
         <section class="profile">
-          <img src="images/avatar.jpg" alt="Photo" class="profile__avatar" />
+          <img
+            src="<%=require('./images/avatar.jpg')%>"
+            alt="Photo"
+            class="profile__avatar"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button class="edit-button"></button>
@@ -123,7 +126,7 @@
           <template id="photo-grid-card">
             <div class="photo-grid__card">
               <img
-                src="images/delete-button.svg"
+                src="<%=require('./images/delete-button.svg')%>"
                 alt="close"
                 class="delete-button"
               />
@@ -139,6 +142,5 @@
 
       <footer class="footer">© 2020 Mesto Russia</footer>
     </div>
-    <script type="module" src="scripts/pages/index.js"></script>
   </body>
 </html>

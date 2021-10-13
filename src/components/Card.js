@@ -11,8 +11,8 @@ class Card {
   }
 
   _handleOpenPopup() {
-    photoPopupImage.src = this._element.firstChild.nextSibling.nextSibling.nextElementSibling.src;
-    photoPopupTitle.textContent = this._element.lastChild.previousSibling.firstChild.nextSibling.textContent;
+    photoPopupImage.src = this._element.firstChild.nextSibling.nextSibling.src;
+    photoPopupTitle.textContent = this._element.lastChild.firstChild.textContent;
   
     photoPopup.classList.add('popup-big-photo_opened');
   }

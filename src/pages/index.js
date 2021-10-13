@@ -4,6 +4,9 @@ import SubmitForm from '../components/SubmitForm.js';
 import TooglePopup from '../components/TooglePopup.js';
 import ValidationForm from '../components/ValidationForm.js';
 import { initialCards, cardList, popupCreateCard, popupEditProfile, validationData } from '../utils/constants.js'
+
+import './index.css';
+
 // Создание карточек — ООП
 
 const cards = new Section({ 
